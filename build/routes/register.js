@@ -35,60 +35,35 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var mongoose_1 = __importDefault(require("mongoose"));
-var User_1 = require("./persistance/User");
-(function () { return __awaiter(void 0, void 0, void 0, function () {
-    var testingUser, error_1;
+var bcrypt = require("bcryptjs");
+var User_1 = require("../persistance/User");
+exports.register = function (request, response) { return __awaiter(void 0, void 0, void 0, function () {
+    var passwordHash, newUser, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, mongoose_1.default.connect('mongodb://localhost:27017/test', { useNewUrlParser: true })];
+            case 0:
+                _a.trys.push([0, 3, , 4]);
+                passwordHash = bcrypt.hashSync(response.locals.strongParams.get("password"), 10);
+                return [4 /*yield*/, new User_1.User({
+                        firstName: response.locals.strongParams.get("firstName"),
+                        lastName: response.locals.strongParams.get("lastName"),
+                        email: response.locals.strongParams.get("email"),
+                        password: passwordHash
+                    })];
             case 1:
-                _a.sent();
-                _a.label = 2;
+                newUser = _a.sent();
+                return [4 /*yield*/, newUser.save()];
             case 2:
-                _a.trys.push([2, 4, , 5]);
-                return [4 /*yield*/, new User_1.User({ firstName: 'FIRSTNAME', lastName: 'LAST_NAME', email: 'testing@gmail.com', password: '123456789123456789123' })];
+                _a.sent();
+                console.log("New User created is : " + newUser);
+                return [2 /*return*/, response.sendStatus(200)];
             case 3:
-                testingUser = _a.sent();
-                //const saveduser = await user.save();
-                testingUser.username = 'kiran';
-                testingUser.save();
-                return [3 /*break*/, 5];
-            case 4:
                 error_1 = _a.sent();
-                // Ensure the expected error was thrown
-                console.log(error_1.message);
-                return [3 /*break*/, 5];
-            case 5:
-                /*
-                    const user = await new User({ firstName: 'kiran', lastName: 'balla', email: 'kiran@gmail.com', password: '123456789123456789123'});
-                    user.firstName = "KIRANB";
-                    const savedUser = await user.save();
-                    console.log(savedUser);
-                    const kotuser = await new User({ firstName: 'kiran', lastName: 'balla', email: 'kiran1@gmail.com', password: '123456789123456789123'});
-                    //kotuser.username = 'kiran';
-                    const session = await new Session({ userId: savedUser});
-                    const usersession = await session.save();
-                    console.log(usersession);
-                    const user = await new User({ firstName: 'FIRSTNAME', lastName: 'LAST_NAME', email: 'kiran@gmail.com', password: '123456789123456789123'});
-                    const testingUser = await new User({ firstName: 'FIRSTNAME', lastName: 'LAST_NAME', email: 'testing@gmail.com', password: '123456789123456789123'});
-                    const saveduser = await user.save();
-                    testingUser.username = 'kiran';
-                    const product = await new Product({
-                        productId: 'ppppp',
-                        name: 'pppppp',
-                        price: 30.00,
-                        quantity: 25.00
-                    });
-                    await product.save();
-                
-                 */
-                process.exit(0);
-                return [2 /*return*/];
+                console.error(error_1);
+                console.log(error_1);
+                return [2 /*return*/, response.sendStatus(501)];
+            case 4: return [2 /*return*/];
         }
     });
-}); })();
+}); };

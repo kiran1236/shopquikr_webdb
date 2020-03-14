@@ -52,7 +52,7 @@ var userSchema = new mongoose_1.default.Schema({
             validator: function (value) {
                 return value.length > 0 && /^[a-zA-Z]*$/.test(value);
             },
-            message: 'First name may only contain letters'
+            message: "First name may only contain letters"
         }
     },
     lastName: {
@@ -62,7 +62,7 @@ var userSchema = new mongoose_1.default.Schema({
             validator: function (value) {
                 return value.length > 2;
             },
-            message: 'Last name name must have more than two characters'
+            message: "Last name name must have more than two characters"
         }
     },
     email: {
@@ -75,7 +75,7 @@ var userSchema = new mongoose_1.default.Schema({
                 var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
                 return emailRegex.test(value);
             },
-            message: 'Email id is not valid'
+            message: "Email id is not valid"
         }
     },
     password: {
@@ -83,9 +83,9 @@ var userSchema = new mongoose_1.default.Schema({
         required: true,
         validate: {
             validator: function (value) {
-                return value.length === 21;
+                return value.length === 60;
             },
-            message: 'Password hash is not valid'
+            message: "Password hash is not valid"
         }
     }
 });
@@ -93,16 +93,18 @@ var userSchema = new mongoose_1.default.Schema({
  * Prior to validation, check and see if there is an user already registered with that email id.
  * If so, promptly throw an error which will prevent the model from saving if this middleware is called.
  */
-userSchema.pre('validate', function (next) {
+userSchema.pre("validate", function (next) {
     return __awaiter(this, void 0, void 0, function () {
         var userAlreadyInDatabase;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, exports.User.findOne({ email: { $eq: this.email } })];
+                case 0: return [4 /*yield*/, exports.User.findOne({
+                        email: { $eq: this.email }
+                    })];
                 case 1:
                     userAlreadyInDatabase = _a.sent();
                     if (userAlreadyInDatabase) {
-                        next(new Error('User already registered with that email'));
+                        next(new Error("User already registered with that email"));
                     }
                     //this.username = this.email.split('@').slice(0, -1).join();
                     next();
@@ -115,21 +117,39 @@ userSchema.pre('validate', function (next) {
  * username is just the email id with out the domain
  * for example email is kiran1236@gmail.com then kiran1236 is the username without the ending domain.
  */
-userSchema.virtual('username')
+userSchema
+    .virtual("username")
     .get(function () {
     // Split and slice it so that ending element after @ is eliminated. This doesnt eliminate if there is a @ in the email id itself.
-    return this.email.split('@').slice(0, -1).join();
-}).set(function (username) {
+    return this.email
+        .split("@")
+        .slice(0, -1)
+        .join();
+})
+    .set(function (username) {
     return __awaiter(this, void 0, void 0, function () {
+        var userInDB;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, exports.User.findOne({ email: { $eq: username + '@' + this.email.split('@').pop() } })];
-                case 1:
+                case 0:
                     // Before setting a new username the email id also should be replaced, since email id and username should be unique so checking for it in db for its uniqueness.
-                    if (_a.sent())
-                        throw new Error('There is an email id with that username and domain as yours');
-                    else
-                        this.email = username + '@' + this.email.split('@').pop();
+                    console.log("username : " + username);
+                    console.log("email : " + this.email);
+                    console.log("computed new email : " + username + "@" + this.email.split("@").pop());
+                    return [4 /*yield*/, exports.User.findOne({
+                            email: { $eq: username + "@" + this.email.split("@").pop() }
+                        })];
+                case 1:
+                    userInDB = _a.sent();
+                    console.log("userInDB : " + userInDB);
+                    if (userInDB) {
+                        console.log("In if block");
+                        throw new Error("There is an email id with that username and domain as yours");
+                    }
+                    else {
+                        console.log("In else block");
+                        this.email = username + "@" + this.email.split("@").pop();
+                    }
                     return [2 /*return*/];
             }
         });
@@ -138,23 +158,25 @@ userSchema.virtual('username')
 /**
  * fullname is combination of firstname and lastname
  */
-userSchema.virtual('fullName')
+userSchema
+    .virtual("fullName")
     .get(function () {
     // Assemble the full name from the first and last namesfullName
-    return this.firstName + ' ' + this.lastName;
-}).set(function (fullName) {
+    return this.firstName + " " + this.lastName;
+})
+    .set(function (fullName) {
     // For a simple example, the full name must separate the first name and last name with a hyphen
     // If the full name doesn't have a hyphen, throw an error
-    if (!fullName.includes('-')) {
+    if (!fullName.includes("-")) {
         // A proper full name for us would be 'Phillip-Fry'
-        throw new Error('Full name must have a hyphen between the first and last name');
+        throw new Error("Full name must have a hyphen between the first and last name");
     }
     // Split should return two strings in an array, destructure assign them
     // Note: Logic here is brittle, if there are multiple dashes this will get thrown off
-    var _a = fullName.split('-'), firstName = _a[0], lastName = _a[1];
+    var _a = fullName.split("-"), firstName = _a[0], lastName = _a[1];
     // Set the first name and last name based on pulling apart the full name
     this.firstName = firstName;
     this.lastName = lastName;
 });
 // Export the compiled model
-exports.User = mongoose_1.default.model('user', userSchema);
+exports.User = mongoose_1.default.model("user", userSchema);
