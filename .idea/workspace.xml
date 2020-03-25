@@ -3,13 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="8a6be460-5549-40b2-aa72-dfe91b6d2dd1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/middleware/sessionValidator.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/middleware/sessionValidator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/middleware/strongParamsMiddleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/middleware/strongParamsMiddleware.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/persistance/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/persistance/User.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shopquikr" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/persistance/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/persistance/User.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/middleware/sessionValidator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/middleware/sessionValidator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/cartOperationAllowed.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/cartOperationAllowed.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/login.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/login.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/logout.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/logout.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/register.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/register.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/order_model_tests.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/order_model_tests.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/sessionValidator_middleware_tests.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/sessionValidator_middleware_tests.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/strongParams_middleware_tests.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/strongParams_middleware_tests.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/user_model_tests.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/user_model_tests.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,7 +54,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Mocha.SessionValidatorMiddleware tests">
+  <component name="RunManager" selected="Mocha.test\order_model_tests.js">
     <configuration name="SessionValidatorMiddleware tests" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
       <node-interpreter>project</node-interpreter>
       <node-options />
@@ -65,7 +70,7 @@
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="SessionValidatorMiddleware tests.Response   have session id value assigned to it" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+    <configuration name="test\order_model_tests.js" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
       <node-interpreter>project</node-interpreter>
       <node-options />
       <mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
@@ -73,15 +78,11 @@
       <pass-parent-env>true</pass-parent-env>
       <ui>bdd</ui>
       <extra-mocha-options />
-      <test-kind>TEST</test-kind>
-      <test-file>$PROJECT_DIR$/test/sessionValidator_middleware_tests.js</test-file>
-      <test-names>
-        <name value="SessionValidatorMiddleware tests" />
-        <name value="Response   have session id value assigned to it" />
-      </test-names>
+      <test-kind>TEST_FILE</test-kind>
+      <test-file>$PROJECT_DIR$/test/order_model_tests.js</test-file>
       <method v="2" />
     </configuration>
-    <configuration name="SessionValidatorMiddleware tests.Response  get status 200" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+    <configuration name="test\sessionValidator_middleware_tests.js" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
       <node-interpreter>project</node-interpreter>
       <node-options />
       <mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
@@ -89,15 +90,11 @@
       <pass-parent-env>true</pass-parent-env>
       <ui>bdd</ui>
       <extra-mocha-options />
-      <test-kind>TEST</test-kind>
+      <test-kind>TEST_FILE</test-kind>
       <test-file>$PROJECT_DIR$/test/sessionValidator_middleware_tests.js</test-file>
-      <test-names>
-        <name value="SessionValidatorMiddleware tests" />
-        <name value="Response  get status 200" />
-      </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="SessionValidatorMiddleware tests.Response should  have session id value assigned to it" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+    <configuration name="test\strongParams_middleware_tests.js" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
       <node-interpreter>project</node-interpreter>
       <node-options />
       <mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
@@ -105,15 +102,11 @@
       <pass-parent-env>true</pass-parent-env>
       <ui>bdd</ui>
       <extra-mocha-options />
-      <test-kind>TEST</test-kind>
-      <test-file>$PROJECT_DIR$/test/sessionValidator_middleware_tests.js</test-file>
-      <test-names>
-        <name value="SessionValidatorMiddleware tests" />
-        <name value="Response should  have session id value assigned to it" />
-      </test-names>
+      <test-kind>TEST_FILE</test-kind>
+      <test-file>$PROJECT_DIR$/test/strongParams_middleware_tests.js</test-file>
       <method v="2" />
     </configuration>
-    <configuration name="SessionValidatorMiddleware tests.Response should not have session id value assigned to it" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+    <configuration name="test\user_model_tests.js" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
       <node-interpreter>project</node-interpreter>
       <node-options />
       <mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
@@ -121,21 +114,17 @@
       <pass-parent-env>true</pass-parent-env>
       <ui>bdd</ui>
       <extra-mocha-options />
-      <test-kind>TEST</test-kind>
-      <test-file>$PROJECT_DIR$/test/sessionValidator_middleware_tests.js</test-file>
-      <test-names>
-        <name value="SessionValidatorMiddleware tests" />
-        <name value="Response should not have session id value assigned to it" />
-      </test-names>
+      <test-kind>TEST_FILE</test-kind>
+      <test-file>$PROJECT_DIR$/test/user_model_tests.js</test-file>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Mocha.test\order_model_tests.js" />
+        <item itemvalue="Mocha.test\user_model_tests.js" />
+        <item itemvalue="Mocha.test\strongParams_middleware_tests.js" />
+        <item itemvalue="Mocha.test\sessionValidator_middleware_tests.js" />
         <item itemvalue="Mocha.SessionValidatorMiddleware tests" />
-        <item itemvalue="Mocha.SessionValidatorMiddleware tests.Response should not have session id value assigned to it" />
-        <item itemvalue="Mocha.SessionValidatorMiddleware tests.Response   have session id value assigned to it" />
-        <item itemvalue="Mocha.SessionValidatorMiddleware tests.Response should  have session id value assigned to it" />
-        <item itemvalue="Mocha.SessionValidatorMiddleware tests.Response  get status 200" />
       </list>
     </recent_temporary>
   </component>
@@ -152,7 +141,9 @@
       <workItem from="1581981618812" duration="1887000" />
       <workItem from="1581994883093" duration="30883000" />
       <workItem from="1582152876863" duration="5378000" />
-      <workItem from="1584148394131" duration="8348000" />
+      <workItem from="1584148394131" duration="9452000" />
+      <workItem from="1584320134441" duration="5684000" />
+      <workItem from="1585148764233" duration="8952000" />
     </task>
     <servers />
   </component>

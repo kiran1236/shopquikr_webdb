@@ -2,7 +2,7 @@
 
 const chai = require('chai');
 const expect = chai.expect;
-
+const bcrypt = require("bcryptjs");
 const Mongoose = require('mongoose');
 const {Order} = require('../build/persistance/Order');
 const {Product} = require('../build/persistance/Product');
@@ -28,7 +28,7 @@ describe('Order model tests', function () {
                 firstName: 'testcase',
                 lastName: 'one',
                 email: 'testcase1@gmail.com',
-                password: 'iambcryptpasswordhash'
+                password: bcrypt.hashSync("testing", 10)
             });
 
             const product = await new Product({
@@ -42,7 +42,7 @@ describe('Order model tests', function () {
                 firstName: 'testcase',
                 lastName: 'one',
                 email: 'testcase11@gmail.com',
-                password: 'iambcryptpasswordhash'
+                password: bcrypt.hashSync("testing", 10)
             });
 
             const product1 = await new Product({
@@ -99,7 +99,7 @@ describe('Order model tests', function () {
                 firstName: 'testcase',
                 lastName: 'two',
                 email: 'testcase2@gmail.com',
-                password: 'iambcryptpasswordhash'
+                password: bcrypt.hashSync("testing", 10)
             });
 
             const product = await new Product({
@@ -147,7 +147,7 @@ describe('Order model tests', function () {
                 firstName: 'testcase',
                 lastName: 'three',
                 email: 'testcase3@gmail.com',
-                password: 'iambcryptpasswordhash'
+                password: bcrypt.hashSync("testing", 10)
             });
 
             const product = await new Product({
@@ -196,7 +196,7 @@ describe('Order model tests', function () {
                 firstName: 'testcase',
                 lastName: 'six',
                 email: 'testcase5@gmail.com',
-                password: 'iambcryptpasswordhash'
+                password: bcrypt.hashSync("testing", 10)
             });
 
             const product = await new Product({
@@ -241,7 +241,7 @@ describe('Order model tests', function () {
                 firstName: 'testcase',
                 lastName: 'six',
                 email: 'testcase6@gmail.com',
-                password: 'iambcryptpasswordhash'
+                password: bcrypt.hashSync("testing", 10)
             });
 
             const product = await new Product({
@@ -286,7 +286,7 @@ describe('Order model tests', function () {
                 firstName: 'testcase',
                 lastName: 'seven',
                 email: 'testcase7@gmail.com',
-                password: 'iambcryptpasswordhash'
+                password: bcrypt.hashSync("testing", 10)
             });
 
             const product = await new Product({

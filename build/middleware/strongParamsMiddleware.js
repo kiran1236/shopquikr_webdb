@@ -11,7 +11,6 @@ function strongParamsMiddleware(params, allMandatoryFields) {
             var weakParamKey = _a[0], specifiedType = _a[1];
             if (request.body && request.body[weakParamKey] !== undefined) {
                 if (typeof request.body[weakParamKey] === specifiedType) {
-                    console.log("coorect");
                     strongParams.set(weakParamKey, request.body[weakParamKey]);
                     // Need to check with john why this is not working, only set is working like above
                     //strongParams[weakParamKey] = request.body[weakParamKey];

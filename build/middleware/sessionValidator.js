@@ -40,7 +40,6 @@ var Session_1 = require("../persistance/Session");
 function sessionValidator(_a) {
     var _b = _a.requireCookie, requireCookie = _b === void 0 ? false : _b;
     // The middleware is configurable so return a function from a function
-    console.log("came here....");
     return function (request, response, next) {
         var _a;
         return __awaiter(this, void 0, void 0, function () {
@@ -48,8 +47,6 @@ function sessionValidator(_a) {
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        // Does the signed 'userCookie' exist? If so add it to the response locals
-                        console.log("came here.123...");
                         if (!((_a = request.signedCookies) === null || _a === void 0 ? void 0 : _a.sessionId)) return [3 /*break*/, 2];
                         sessionId = request.signedCookies.sessionId;
                         return [4 /*yield*/, Session_1.Session.findOne({ sessionId: { $eq: sessionId } })];

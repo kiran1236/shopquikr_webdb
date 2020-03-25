@@ -1,3 +1,4 @@
+const {Session} = require("../build/persistance/Session");
 
 const {sessionValidator} = require('../build/middleware/sessionValidator');
 const chai = require('chai');
@@ -5,9 +6,20 @@ const expect = chai.expect;
 
 const sinon = require('sinon');
 const httpMocks = require('node-mocks-http');
-
-
+const {User} = require('../build/persistance/User');
+const bcrypt = require("bcryptjs");
+const Mongoose = require('mongoose');
 describe('SessionValidatorMiddleware tests', function () {
+    // Connecting to the database
+    before(async function () {
+        await Mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true});
+    });
+    // Clearing the data before every run.
+    beforeEach(async function () {
+        await User.deleteMany({});
+        await Session.deleteMany({});
+    });
+
     it('SessionValidator middleware should accept three parameters', function () {
         const request  = httpMocks.createRequest({
             method: 'DELETE',
@@ -44,7 +56,7 @@ describe('SessionValidatorMiddleware tests', function () {
         });
     });
 
-    it('Response should  have status code of 200 since required cookie is set to false', function () {
+    it('Response should  have status code of 200, required cookie is set to false', function () {
         const request  = httpMocks.createRequest({
             method: 'DELETE',
             url: '/logout',
@@ -54,6 +66,52 @@ describe('SessionValidatorMiddleware tests', function () {
         const next = sinon.spy();
         sessionValidator(false)(request, response, next);
         expect(response.statusCode).to.equal(200);
+    });
+
+    it('Successfull TestCase with mandatory cookie', async function () {
+        // Creating a new user
+        const user = await new User({
+            firstName: 'testcase',
+            lastName: 'seven',
+            email: 'testcase7@gmail.com',
+            password: bcrypt.hashSync("testing", 10)
+        });
+        const savedUser = await user.save();
+        // Creating a new session with the newly created user
+        const newUserSession = await new Session({userId: savedUser});
+        const userSession = await newUserSession.save();
+        const request  = httpMocks.createRequest({
+            method: 'DELETE',
+            url: '/logout',
+            sessionCookie: userSession.sessionID
+        });
+        const response = httpMocks.createResponse();
+        const next = sinon.spy();
+        const result = sessionValidator(true)(request, response, next);
+        expect(response.locals.sessionId).to.equal(userSession.sessionID);
+    });
+
+    it('Successfull TestCase without mandatory cookie', async function () {
+        // Creating a new user
+        const user = await new User({
+            firstName: 'testcase',
+            lastName: 'seven',
+            email: 'testcase7@gmail.com',
+            password: bcrypt.hashSync("testing", 10)
+        });
+        const savedUser = await user.save();
+        // Creating a new session with the newly created user
+        const newUserSession = await new Session({userId: savedUser});
+        const userSession = await newUserSession.save();
+        const request  = httpMocks.createRequest({
+            method: 'DELETE',
+            url: '/logout',
+            sessionCookie: userSession.sessionID
+        });
+        const response = httpMocks.createResponse();
+        const next = sinon.spy();
+        const result = sessionValidator(false)(request, response, next);
+        expect(response.locals.sessionId).to.equal(userSession.sessionID);
     });
 });
 

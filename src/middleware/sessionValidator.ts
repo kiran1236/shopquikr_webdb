@@ -5,7 +5,7 @@ export function sessionValidator({ requireCookie = false}: { requireCookie: bool
   // The middleware is configurable so return a function from a function
   return async function (request: Request, response: Response, next: NextFunction) {
     // Does the signed 'userCookie' exist? If so add it to the response locals
-    if (request.signedCookies?.sessionId) {
+    if (request.signedCookies && request.signedCookies.sessionId) {
       const sessionId: string = request.signedCookies.sessionId;
       const userAlreadyHadSession = await Session.findOne({ sessionId: { $eq: sessionId }  });
       console.log("userAlreadyHadSession is : " + userAlreadyHadSession);

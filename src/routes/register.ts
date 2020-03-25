@@ -8,6 +8,7 @@ export const register = async (request: Request, response: Response) => {
       response.locals.strongParams.get("password"),
       10
     );
+    // Creating a new user record with the values kept in response locals by the middleware
     const newUser = await new User({
       firstName: response.locals.strongParams.get("firstName"),
       lastName: response.locals.strongParams.get("lastName"),

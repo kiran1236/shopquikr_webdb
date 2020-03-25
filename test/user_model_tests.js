@@ -1,6 +1,6 @@
 const chai = require('chai');
 const expect = chai.expect;
-
+const bcrypt = require("bcryptjs");
 const Mongoose = require('mongoose');
 
 const {User} = require('../build/persistance/User');
@@ -21,7 +21,7 @@ describe('User model tests', function () {
                 firstName: 'FIRST_NAME',
                 lastName: 'LAST_NAME',
                 email: 'testcase1@gmail.com',
-                password: 'iambcryptpasswordhash'
+                password: bcrypt.hashSync("testing", 10)
             });
 
             // User should have the initial field values provided above
@@ -52,7 +52,7 @@ describe('User model tests', function () {
                 firstName: 'testcase',
                 lastName: 'username',
                 email: 'testcase2@gmail.com',
-                password: 'iambcryptpasswordhash'
+                password: bcrypt.hashSync("testing", 10)
             });
             // User should have the initial field values provided above
             expect(user.username).to.equal('testcase2');
@@ -75,7 +75,7 @@ describe('User model tests', function () {
                 firstName: '12345',
                 lastName: 'LAST_NAME',
                 email: 'testcase3@gmail.com',
-                password: 'iambcryptpasswordhash'
+                password: bcrypt.hashSync("testing", 10)
             });
 
             try {
@@ -103,7 +103,7 @@ describe('User model tests', function () {
                 firstName: 'testcase',
                 lastName: 'four',
                 email: 'testcase4gmail.com',
-                password: 'iambcryptpasswordhash'
+                password: bcrypt.hashSync("testing", 10)
             });
 
             try {
@@ -125,12 +125,13 @@ describe('User model tests', function () {
 
         it('Should prevent adding the user with existing email id again', async function () {
 
+
             // Instantiate a new user with same email
             const user = await new User({
                 firstName: 'testcase',
                 lastName: 'five',
                 email: 'testcase5@gmail.com',
-                password: 'iambcryptpasswordhash'
+                password: bcrypt.hashSync("testing", 10)
             });
 
             try {
@@ -160,7 +161,7 @@ describe('User model tests', function () {
                 firstName: 'testcase',
                 lastName: '6',
                 email: 'testcase6@gmail.com',
-                password: 'iambcryptpasswordhash'
+                password: bcrypt.hashSync("testing", 10)
             });
 
             try {
@@ -187,7 +188,7 @@ describe('User model tests', function () {
                 firstName: 'testcase',
                 lastName: 'seven',
                 email: 'testcase7@gmail.com',
-                password: 'iambcryptpasswordhash'
+                password: bcrypt.hashSync("testing", 10)
             });
 
             // Saving the user should not throw an exception
