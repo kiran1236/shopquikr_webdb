@@ -19,7 +19,7 @@ const orderSchema: Mongoose.Schema<IOrder> = new Mongoose.Schema<IOrder>({
         validate: {
             isAsync: true,
             validator: async (value: String) => {
-                if (await Order.findOne({orderId:{$eq: value}}))
+                if (await Order.findOne({orderId: {$eq: value}}))
                     return false;
                 else
                     return true;
@@ -34,7 +34,7 @@ const orderSchema: Mongoose.Schema<IOrder> = new Mongoose.Schema<IOrder>({
         validate: {
             isAsync: true,
             validator: async (value: IUser) => {
-                if (await User.findOne({_id:{$eq: value}}))
+                if (await User.findOne({_id: {$eq: value}}))
                     return true;
                 else
                     return false;
@@ -50,7 +50,7 @@ const orderSchema: Mongoose.Schema<IOrder> = new Mongoose.Schema<IOrder>({
         validate: {
             isAsync: true,
             validator: async (value: IProduct) => {
-                if (await Product.findOne({_id:{$eq: value}}))
+                if (await Product.findOne({_id: {$eq: value}}))
                     return true;
                 else
                     return false;

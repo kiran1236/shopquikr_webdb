@@ -1,5 +1,3 @@
-
-
 const chai = require('chai');
 const expect = chai.expect;
 const bcrypt = require("bcryptjs");
@@ -68,7 +66,6 @@ describe('Order model tests', function () {
             });
 
 
-
             try {
                 // Saving the user should not throw an exception
                 const saveduser = await user.save();
@@ -118,7 +115,6 @@ describe('Order model tests', function () {
             });
 
 
-
             try {
                 // Not Saving the user, should throw an exception
                 //const saveduser = await user.save();
@@ -164,7 +160,6 @@ describe('Order model tests', function () {
                 price: '30',
                 quantity: '25'
             });
-
 
 
             try {

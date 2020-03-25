@@ -21,7 +21,7 @@ describe('SessionValidatorMiddleware tests', function () {
     });
 
     it('SessionValidator middleware should accept three parameters', function () {
-        const request  = httpMocks.createRequest({
+        const request = httpMocks.createRequest({
             method: 'DELETE',
             url: '/logout',
         });
@@ -33,7 +33,7 @@ describe('SessionValidatorMiddleware tests', function () {
     });
 
     it('SessionValidator should call next at least once', function () {
-        const request  = httpMocks.createRequest({
+        const request = httpMocks.createRequest({
             method: 'DELETE',
             url: '/logout',
         });
@@ -44,7 +44,7 @@ describe('SessionValidatorMiddleware tests', function () {
     });
 
     it('Response should not have session id value assigned to it', function () {
-        const request  = httpMocks.createRequest({
+        const request = httpMocks.createRequest({
             method: 'DELETE',
             url: '/logout'
         });
@@ -57,7 +57,7 @@ describe('SessionValidatorMiddleware tests', function () {
     });
 
     it('Response should  have status code of 200, required cookie is set to false', function () {
-        const request  = httpMocks.createRequest({
+        const request = httpMocks.createRequest({
             method: 'DELETE',
             url: '/logout',
             sessionCookie: '1234'
@@ -80,7 +80,7 @@ describe('SessionValidatorMiddleware tests', function () {
         // Creating a new session with the newly created user
         const newUserSession = await new Session({userId: savedUser});
         const userSession = await newUserSession.save();
-        const request  = httpMocks.createRequest({
+        const request = httpMocks.createRequest({
             method: 'DELETE',
             url: '/logout',
             sessionCookie: userSession.sessionID
@@ -103,7 +103,7 @@ describe('SessionValidatorMiddleware tests', function () {
         // Creating a new session with the newly created user
         const newUserSession = await new Session({userId: savedUser});
         const userSession = await newUserSession.save();
-        const request  = httpMocks.createRequest({
+        const request = httpMocks.createRequest({
             method: 'DELETE',
             url: '/logout',
             sessionCookie: userSession.sessionID

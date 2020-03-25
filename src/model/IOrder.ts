@@ -1,4 +1,4 @@
-import { Document } from 'mongoose';
+import {Document} from 'mongoose';
 import {IUser} from "./IUser";
 import {IProduct} from "./IProduct";
 

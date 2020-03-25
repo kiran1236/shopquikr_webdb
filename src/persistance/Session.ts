@@ -19,7 +19,7 @@ const sessionSchema: Mongoose.Schema<ISession> = new Mongoose.Schema<ISession>({
         validate: {
             isAsync: true,
             validator: async (value: IUser) => {
-                if (await User.findOne({_id:{$eq: value}}))
+                if (await User.findOne({_id: {$eq: value}}))
                     return true;
                 else
                     return false;

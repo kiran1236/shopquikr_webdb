@@ -14,7 +14,7 @@ const productSchema: Mongoose.Schema<IProduct> = new Mongoose.Schema<IProduct>({
         validate: {
             isAsync: true,
             validator: async (value: String) => {
-                if (await Product.findOne({productId:{$eq: value}}))
+                if (await Product.findOne({productId: {$eq: value}}))
                     return false;
                 else
                     return true;
