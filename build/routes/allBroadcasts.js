@@ -35,46 +35,38 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var Session_1 = require("../persistance/Session");
-function sessionValidator(_a) {
-    var _b = _a.requireCookie, requireCookie = _b === void 0 ? false : _b;
-    // The middleware is configurable so return a function from a function
-    return function (request, response, next) {
-        return __awaiter(this, void 0, void 0, function () {
-            var sessionId, userAlreadyHadSession;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (!(request.signedCookies && request.signedCookies.sessionId)) return [3 /*break*/, 2];
-                        sessionId = request.signedCookies.sessionId;
-                        return [4 /*yield*/, Session_1.Session.findOne({ sessionId: { $eq: sessionId } })];
-                    case 1:
-                        userAlreadyHadSession = _a.sent();
-                        console.log("userAlreadyHadSession is : " + userAlreadyHadSession);
-                        if (userAlreadyHadSession) {
-                            response.locals.sessionId = sessionId;
-                            return [2 /*return*/, next()];
+var ws_1 = __importDefault(require("ws"));
+var Message_1 = require("../persistance/Message");
+var port = 6000;
+var webSocketServer = new ws_1.default.Server({ port: port });
+webSocketServer.on('connection', function (webSocketClient) {
+    console.log('A client has connected to the websocket server!');
+    webSocketClient.send('Hello from the websocket server! You have successfully connected!');
+    webSocketClient.on('message', function (message) { return __awaiter(void 0, void 0, void 0, function () {
+        var newMessage, savedMessage;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    console.log('Received message from client: ', message);
+                    return [4 /*yield*/, new Message_1.Message({ message: message })];
+                case 1:
+                    newMessage = _a.sent();
+                    return [4 /*yield*/, newMessage.save()];
+                case 2:
+                    savedMessage = _a.sent();
+                    webSocketServer.clients.forEach(function (client) {
+                        if (client.readyState === ws_1.default.OPEN) {
+                            client.send('Broadcast message from the websocket server: ' + message);
                         }
-                        else {
-                            if (requireCookie) {
-                                response.sendStatus(403);
-                                return [2 /*return*/, next(new Error("Cookie was required for request but no cookie was found"))];
-                            }
-                            return [2 /*return*/, next()];
-                        }
-                        return [3 /*break*/, 3];
-                    case 2:
-                        // No cookie was found, is it even required? If so respond with a 403 and throw an error
-                        if (requireCookie) {
-                            response.sendStatus(403);
-                            return [2 /*return*/, next(new Error("Cookie was required for request but no cookie was found"))];
-                        }
-                        return [2 /*return*/, next()];
-                    case 3: return [2 /*return*/];
-                }
-            });
+                    });
+                    console.log('Broadcasted message to all connected clients!');
+                    return [2 /*return*/];
+            }
         });
-    };
-}
-exports.sessionValidator = sessionValidator;
+    }); });
+});
+console.log('Websocket server is up and ready for connections on port', port);

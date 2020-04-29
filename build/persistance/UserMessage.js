@@ -35,46 +35,50 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var Session_1 = require("../persistance/Session");
-function sessionValidator(_a) {
-    var _b = _a.requireCookie, requireCookie = _b === void 0 ? false : _b;
-    // The middleware is configurable so return a function from a function
-    return function (request, response, next) {
-        return __awaiter(this, void 0, void 0, function () {
-            var sessionId, userAlreadyHadSession;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (!(request.signedCookies && request.signedCookies.sessionId)) return [3 /*break*/, 2];
-                        sessionId = request.signedCookies.sessionId;
-                        return [4 /*yield*/, Session_1.Session.findOne({ sessionId: { $eq: sessionId } })];
-                    case 1:
-                        userAlreadyHadSession = _a.sent();
-                        console.log("userAlreadyHadSession is : " + userAlreadyHadSession);
-                        if (userAlreadyHadSession) {
-                            response.locals.sessionId = sessionId;
-                            return [2 /*return*/, next()];
-                        }
-                        else {
-                            if (requireCookie) {
-                                response.sendStatus(403);
-                                return [2 /*return*/, next(new Error("Cookie was required for request but no cookie was found"))];
-                            }
-                            return [2 /*return*/, next()];
-                        }
-                        return [3 /*break*/, 3];
-                    case 2:
-                        // No cookie was found, is it even required? If so respond with a 403 and throw an error
-                        if (requireCookie) {
-                            response.sendStatus(403);
-                            return [2 /*return*/, next(new Error("Cookie was required for request but no cookie was found"))];
-                        }
-                        return [2 /*return*/, next()];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-}
-exports.sessionValidator = sessionValidator;
+var mongoose_1 = __importDefault(require("mongoose"));
+var mongoose = __importStar(require("mongoose"));
+var User_1 = require("./User");
+/**
+ * Session schema with custom validations.
+ */
+var userMessageSchema = new mongoose_1.default.Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+        validate: {
+            isAsync: true,
+            validator: function (value) { return __awaiter(void 0, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, User_1.User.findOne({ _id: { $eq: value } })];
+                        case 1:
+                            if (_a.sent())
+                                return [2 /*return*/, true];
+                            else
+                                return [2 /*return*/, false];
+                            return [2 /*return*/];
+                    }
+                });
+            }); },
+            message: 'User not in database'
+        }
+    },
+    message: {
+        type: String,
+        required: true,
+    }
+});
+// Export the compiled model
+exports.UserMessage = mongoose_1.default.model('usermessage', userMessageSchema);

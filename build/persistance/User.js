@@ -83,7 +83,6 @@ var userSchema = new mongoose_1.default.Schema({
         required: true,
         validate: {
             validator: function (value) {
-                console.log("length : " + value.length);
                 return value.length === 60;
             },
             message: "Password hash is not valid"

@@ -44,11 +44,13 @@ exports.logout = function (request, response) { return __awaiter(void 0, void 0,
             case 0:
                 _a.trys.push([0, 2, , 3]);
                 sessionId = response.locals.sessionId;
+                // Upon every logout, the session record is deleted from the database.
                 return [4 /*yield*/, Session_1.Session.deleteOne({ sessionId: sessionId }, function (err) {
                         if (err)
                             return response.sendStatus(403);
                     })];
             case 1:
+                // Upon every logout, the session record is deleted from the database.
                 _a.sent();
                 response.cookie("sessionId", null);
                 return [2 /*return*/, response.send("success").status(200)];

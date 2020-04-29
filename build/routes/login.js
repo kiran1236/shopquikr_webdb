@@ -62,6 +62,8 @@ exports.login = function (request, response) { return __awaiter(void 0, void 0, 
             case 2:
                 userAlreadyHadSession = _a.sent();
                 console.log("userAlreadyHadSession is : " + userAlreadyHadSession);
+                // If the user is already having session record, that means earlier session didnt close properly. Hence force closing the earlier session.
+                // By deleting the earlier session record and creating a new one.
                 if (userAlreadyHadSession) {
                     Session_1.Session.deleteOne({ userId: { $eq: user_1 } }, function (err) {
                         if (err)

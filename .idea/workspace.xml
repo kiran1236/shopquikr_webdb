@@ -3,25 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="8a6be460-5549-40b2-aa72-dfe91b6d2dd1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/middleware/sessionValidator.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/middleware/sessionValidator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/persistance/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/persistance/User.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/routes/cartOperationAllowed.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/routes/cartOperationAllowed.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/routes/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/routes/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/routes/logout.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/routes/logout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/routes/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/routes/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middleware/sessionValidator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/middleware/sessionValidator.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middleware/strongParamsMiddleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/middleware/strongParamsMiddleware.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/IOrder.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/IOrder.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/IProduct.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/IProduct.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/ISession.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ISession.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/IUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/IUser.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/persistance/Order.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/persistance/Order.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/persistance/Product.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/persistance/Product.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/persistance/Session.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/persistance/Session.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/persistance/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/persistance/User.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/cartOperationAllowed.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/cartOperationAllowed.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/home.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/home.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/logout.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/logout.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/register.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/register.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/order_model_tests.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/order_model_tests.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/sessionValidator_middleware_tests.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/sessionValidator_middleware_tests.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/strongParams_middleware_tests.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/strongParams_middleware_tests.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -150,7 +141,8 @@
       <workItem from="1582152876863" duration="5378000" />
       <workItem from="1584148394131" duration="9452000" />
       <workItem from="1584320134441" duration="5684000" />
-      <workItem from="1585148764233" duration="10589000" />
+      <workItem from="1585148764233" duration="11718000" />
+      <workItem from="1587593035059" duration="664000" />
     </task>
     <servers />
   </component>

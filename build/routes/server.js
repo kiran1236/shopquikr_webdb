@@ -26,7 +26,12 @@ server.delete("/logout", [sessionValidator_1.sessionValidator({ requireCookie: t
 // route used to check whether the user is signed in or not to perform cart operations by retrieving the existing session of the user
 server.get("/cartOperationAllowed", [sessionValidator_1.sessionValidator({ requireCookie: true })], cartOperationAllowed_1.cartOperationAllowed);
 // route used to register the user and the parameters are verified with strong params
-server.post("/register", [strongParamsMiddleware_1.strongParamsMiddleware({ firstName: 'string', lastName: 'string', email: 'string', password: 'string' }, true)], register_1.register);
+server.post("/register", [strongParamsMiddleware_1.strongParamsMiddleware({
+        firstName: 'string',
+        lastName: 'string',
+        email: 'string',
+        password: 'string'
+    }, true)], register_1.register);
 var port = process.env.PORT || 4000;
 server.listen(port, function () { return console.log('Server is up!'); });
 exports.default = server;

@@ -41,53 +41,49 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose_1 = __importDefault(require("mongoose"));
 var User_1 = require("./persistance/User");
+var ws_1 = __importDefault(require("ws"));
+var Message_1 = require("./persistance/Message");
+var bcrypt = require("bcryptjs");
 (function () { return __awaiter(void 0, void 0, void 0, function () {
-    var testingUser, error_1;
+    var webSocket;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, mongoose_1.default.connect('mongodb://localhost:27017/test', { useNewUrlParser: true })];
             case 1:
                 _a.sent();
-                _a.label = 2;
-            case 2:
-                _a.trys.push([2, 4, , 5]);
-                return [4 /*yield*/, new User_1.User({ firstName: 'FIRSTNAME', lastName: 'LAST_NAME', email: 'testing@gmail.com', password: '123456789123456789123' })];
-            case 3:
-                testingUser = _a.sent();
-                //const saveduser = await user.save();
-                testingUser.username = 'kiran';
-                testingUser.save();
-                return [3 /*break*/, 5];
-            case 4:
-                error_1 = _a.sent();
-                // Ensure the expected error was thrown
-                console.log(error_1.message);
-                return [3 /*break*/, 5];
-            case 5:
-                /*
-                    const user = await new User({ firstName: 'kiran', lastName: 'balla', email: 'kiran@gmail.com', password: '123456789123456789123'});
-                    user.firstName = "KIRANB";
-                    const savedUser = await user.save();
-                    console.log(savedUser);
-                    const kotuser = await new User({ firstName: 'kiran', lastName: 'balla', email: 'kiran1@gmail.com', password: '123456789123456789123'});
-                    //kotuser.username = 'kiran';
-                    const session = await new Session({ userId: savedUser});
-                    const usersession = await session.save();
-                    console.log(usersession);
-                    const user = await new User({ firstName: 'FIRSTNAME', lastName: 'LAST_NAME', email: 'kiran@gmail.com', password: '123456789123456789123'});
-                    const testingUser = await new User({ firstName: 'FIRSTNAME', lastName: 'LAST_NAME', email: 'testing@gmail.com', password: '123456789123456789123'});
-                    const saveduser = await user.save();
-                    testingUser.username = 'kiran';
-                    const product = await new Product({
-                        productId: 'ppppp',
-                        name: 'pppppp',
-                        price: 30.00,
-                        quantity: 25.00
+                webSocket = new ws_1.default('ws://localhost:5000');
+                webSocket.onopen = function () { return __awaiter(void 0, void 0, void 0, function () {
+                    var user, savedUser, userMessage, newMessage, savedMessage;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                console.log('Connection Opened');
+                                webSocket.onmessage = function (message) {
+                                    console.log('Received message: ', JSON.stringify(message.data));
+                                };
+                                return [4 /*yield*/, new User_1.User({
+                                        firstName: 'phanikiran',
+                                        lastName: 'balla',
+                                        email: 'testcase1@gmail.com',
+                                        password: bcrypt.hashSync("testing", 10)
+                                    })];
+                            case 1:
+                                user = _a.sent();
+                                return [4 /*yield*/, user.save()];
+                            case 2:
+                                savedUser = _a.sent();
+                                userMessage = [savedUser, "This is test user"];
+                                return [4 /*yield*/, new Message_1.Message({ message: 'Testing' })];
+                            case 3:
+                                newMessage = _a.sent();
+                                return [4 /*yield*/, newMessage.save()];
+                            case 4:
+                                savedMessage = _a.sent();
+                                webSocket.send(JSON.stringify(userMessage));
+                                return [2 /*return*/];
+                        }
                     });
-                    await product.save();
-                
-                 */
-                process.exit(0);
+                }); };
                 return [2 /*return*/];
         }
     });
