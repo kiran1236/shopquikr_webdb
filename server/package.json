@@ -23,7 +23,7 @@
     "nanoid": "^2.1.11",
     "node-mocks-http": "^1.8.1",
     "sinon": "^9.0.1",
-    "ws": "^7.2.3"
+    "ws": "^7.2.5"
   },
   "devDependencies": {
     "@types/chai": "^4.2.9",
